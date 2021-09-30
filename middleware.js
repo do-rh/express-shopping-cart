@@ -18,6 +18,7 @@ function isInCart(req, res, next) {
   const itemName = req.params.name || req.body.name;
   const itemIndex = db.items.findIndex((item) => item.name === itemName);
   res.locals.itemIndex = itemIndex;
+
   console.log("itemIndex: ", itemIndex, "itemName: ", itemName);
   if (itemIndex === -1) {
     throw new NotFoundError("Item does not exist in shopping cart");

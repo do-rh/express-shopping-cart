@@ -35,10 +35,10 @@ router.get("/:name", middleware.isInCart, function (req, res, next) {
 router.patch("/:name", middleware.isInCart, function (req, res, next) {
   const item = req.body;
   //   Better variable naming there
-  const itemName = req.body.name;
-  const itemIndex = db.items.findIndex((item) => item.name === itemName);
+  //   const itemName = req.body.name;
+  //   const itemIndex = db.items.findIndex((item) => item.name === itemName);
 
-  db.items[itemIndex] = item;
+  db.items[res.locals.itemIndex] = item;
   return res.json({ updated: item });
 });
 
