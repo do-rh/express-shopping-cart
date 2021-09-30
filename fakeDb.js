@@ -1,7 +1,5 @@
-const items = [
-    {"name": "cheerioz", "price": 22.22},
-    {"name": "popsicle", "price": 2222}
-];
+"use strict";
+const items = [];
 
 //add objects into items. accessed by all routes & test files.
 

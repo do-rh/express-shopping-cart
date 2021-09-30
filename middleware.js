@@ -1,3 +1,4 @@
+"use strict";
 /** Example middleware. */
 
 const { BadRequestError } = require("./expressError");
@@ -14,13 +15,13 @@ function logger(req, res, next) {
 /** Check that name param must be Elie or raise Unauth. */
 
 function isInCart(req, res, next) {
-    const itemName = req.params.name || req.body.name;
-    const itemIndex = db.items.findIndex((item) => item.name === itemName);
-    console.log('itemIndex: ', itemIndex, 'itemName: ', itemName);
-    if (itemIndex === -1) {
-        throw new BadRequestError("Item does not exist in shopping cart");
-    };
-    next();
+  const itemName = req.params.name || req.body.name;
+  const itemIndex = db.items.findIndex((item) => item.name === itemName);
+  console.log("itemIndex: ", itemIndex, "itemName: ", itemName);
+  if (itemIndex === -1) {
+    throw new BadRequestError("Item does not exist in shopping cart");
+  }
+  next();
 }
 
 module.exports = { logger, isInCart };

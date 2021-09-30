@@ -1,3 +1,4 @@
+"use strict";
 //array of objects.
 //object key=name, value= price
 
@@ -28,6 +29,5 @@ app.use(function (err, req, res, next) {
   if (process.env.NODE_ENV !== "test") console.error(status, err.stack);
   return res.status(status).json({ error: { message, status } });
 });
-
 
 module.exports = app;
