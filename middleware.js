@@ -1,7 +1,7 @@
 "use strict";
 /** Example middleware. */
 
-const { BadRequestError } = require("./expressError");
+const { NotFoundError } = require("./expressError");
 const db = require("./fakeDb");
 
 /** Logger: prints log message and goes to next. */
@@ -17,9 +17,11 @@ function logger(req, res, next) {
 function isInCart(req, res, next) {
   const itemName = req.params.name || req.body.name;
   const itemIndex = db.items.findIndex((item) => item.name === itemName);
+  res.locals.itemIndex = itemIndex;
   console.log("itemIndex: ", itemIndex, "itemName: ", itemName);
   if (itemIndex === -1) {
-    throw new BadRequestError("Item does not exist in shopping cart");
+    throw new NotFoundError("Item does not exist in shopping cart");
+    // Not found 404
   }
   next();
 }

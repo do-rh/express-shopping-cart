@@ -54,9 +54,9 @@ describe("GET / items/:name", function () {
 
 describe("PATCH / items/:name", function () {
   it("Update an individual item in list", async function () {
-    const resp = await (
-      await request(app).patch(`/items/${testItems[1].name}`)
-    ).send({ name: "popsicle", price: 12 });
+    const resp = await request(app)
+      .patch(`/items/${testItems[1].name}`)
+      .send({ name: "popsicle", price: 12 });
     // NOTE: request(app) from supertest
 
     expect(resp.body).toEqual({ updated: { name: "popsicle", price: 12 } });
@@ -74,6 +74,7 @@ describe("DELETE / items/:name", function () {
     // NOTE: request(app) from supertest
 
     expect(resp.body).toEqual({ message: "Deleted" });
+    console.log("db.items", db.items);
     expect(db.items.length).toEqual(1);
   });
 });
